@@ -1,0 +1,16 @@
+Package                     Version
+--------------------------------------------
+future                 0.18.2
+h5py                   3.1.0
+matplotlib             3.3.3
+numpy                  1.19.4
+opencv-python          4.5.2.52
+pandas                 1.1.4
+Pillow                 8.0.1
+progress               1.5
+PyYAML                 5.4.1
+tensorboardX           2.1
+torch                  1.7.0+cu110
+torchaudio             0.7.0
+torchvision            0.8.1+cu110
+
