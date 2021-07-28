@@ -121,11 +121,13 @@ class Config():
         self.ckpt_dir = os.path.join("./ckpt/", exp_name, "short_term" if self.output_n==10 else "long_term")
         if not os.path.exists(os.path.join(self.ckpt_dir, "models")):
             os.makedirs(os.path.join(self.ckpt_dir, "models"))
+        if not os.path.exists(os.path.join(self.ckpt_dir, "images")):
+            os.makedirs(os.path.join(self.ckpt_dir, "images"))
 
         if self.exp_name == "h36m":
-            self.base_data_dir = os.path.join("./lfs/datasets/nie_new_gap5")
+            self.base_data_dir = os.path.join("F:\model_report_data\mocap_motion_prediction\data\human36mData3D\others", "h3.6m\dataset")
         elif self.exp_name == "cmu":
-            self.base_data_dir = os.path.join("/mnt/hdd4T/dlw_home/model_report_data/datasets/cmu_3d")
+            self.base_data_dir = os.path.join("F:\model_report_data\mocap_motion_prediction", "data\cmu")
 
 
 

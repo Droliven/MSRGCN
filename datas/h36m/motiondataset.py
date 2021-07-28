@@ -17,7 +17,7 @@ from ..dct import get_dct_matrix, dct_transform_numpy
 
 class MotionDataset(Dataset):
 
-    def __init__(self, path_to_data, actions, mode_name="train", input_n=20, output_n=10, dct_used=15, split=0, sample_rate=2, down_key=[('p22', 'p12', []), ('p12', 'p7', []), ('p7', 'p4', [])], test_manner="all", global_max=0, global_min=0, device="cuda:0"):
+    def __init__(self, path_to_data, actions, mode_name="train", input_n=20, output_n=10, dct_used=15, split=0, sample_rate=2, down_key=[('p22', 'p12', []), ('p12', 'p7', []), ('p7', 'p4', [])], test_manner="all", global_max=0, global_min=0, device="cuda:0", debug_step=100):
         """
         :param path_to_data:
         :param actions:
@@ -30,7 +30,7 @@ class MotionDataset(Dataset):
         self.path_to_data = path_to_data
         self.split = split
 
-        subs = np.array([[1, 6, 7, 8, 9], [5], [11]])
+        subs = [[1, 6, 7, 8, 9], [5], [11]]
         acts = data_utils.define_actions(actions)
 
         subjs = subs[split]
@@ -74,17 +74,21 @@ class MotionDataset(Dataset):
             input_all_scales[k] = input_all_scales[k] * 2 - 1
 
         # todo 加速调试 *********************************
+        little = np.arange(0, input_all_scales[list(input_all_scales.keys())[0]].shape[0], debug_step)
+        for k in input_all_scales:
+            input_all_scales[k] = input_all_scales[k][little]
+            gt_all_scales[k] = gt_all_scales[k][little]
 
         self.gt_all_scales = gt_all_scales
         self.input_all_scales = input_all_scales
 
     def __len__(self):
-        return self.gt_all_scales[0].shape[0]
+        return self.gt_all_scales[list(self.gt_all_scales.keys())[0]].shape[0]
 
     def __getitem__(self, item):
         gts = {}
         inputs = {}
-        for k in ['p32', 'p22', 'p7', 'p4']:
+        for k in ['p32', 'p22', 'p12', 'p7', 'p4']:
             gts[k] = self.gt_all_scales[k][item]
             inputs[k] = self.input_all_scales[k][item]
         return inputs, gts

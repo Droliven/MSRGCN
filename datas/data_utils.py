@@ -402,7 +402,7 @@ def load_data_cmu(path_to_dataset, actions, input_n, output_n, data_std=0, data_
     return sampled_seq, dimensions_to_ignore, dimensions_to_use, data_mean, data_std
 
 
-def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, data_std=0, data_mean=0, is_test=False, device="cuda:0"):
+def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, sample_rate=2, data_std=0, data_mean=0, is_test=False, device="cuda:0", test_manner="all"):
     seq_len = input_n + output_n
     nactions = len(actions)
     sampled_seq = []
@@ -424,10 +424,11 @@ def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, data_std=0, da
             xyz = xyz.cpu().data.numpy()
             action_sequence = xyz
 
-            even_list = range(0, n, 2)
-            the_sequence = np.array(action_sequence[even_list, :])
+            even_list = range(0, n, sample_rate)
+            the_sequence = np.array(action_sequence[even_list, :])  # x, 114
             num_frames = len(the_sequence)
-            if not is_test:
+            # 训练集，整体测试集
+            if (not is_test) or (is_test and test_manner == "all"):
                 fs = np.arange(0, num_frames - seq_len + 1)
                 fs_sel = fs
                 for i in np.arange(seq_len - 1):
@@ -440,7 +441,10 @@ def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, data_std=0, da
                 else:
                     sampled_seq = np.concatenate((sampled_seq, seq_sel), axis=0)
                     complete_seq = np.append(complete_seq, the_sequence, axis=0)
-            else:
+
+            # 测试集 随机挑选 8
+            elif test_manner == "8":
+                # 水滴测试
                 source_seq_len = 50
                 target_seq_len = 25
                 total_frames = source_seq_len + target_seq_len
@@ -449,8 +453,7 @@ def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, data_std=0, da
                 rng = np.random.RandomState(SEED)
                 for _ in range(batch_size):
                     idx = rng.randint(0, num_frames - total_frames)
-                    seq_sel = the_sequence[
-                              idx + (source_seq_len - input_n):(idx + source_seq_len + output_n), :]
+                    seq_sel = the_sequence[idx + (source_seq_len - input_n):(idx + source_seq_len + output_n), :]  # 35， 114
                     seq_sel = np.expand_dims(seq_sel, axis=0)
                     if len(sampled_seq) == 0:
                         sampled_seq = seq_sel
@@ -467,8 +470,8 @@ def load_data_cmu_3d(path_to_dataset, actions, input_n, output_n, data_std=0, da
     dimensions_to_ignore = np.concatenate((joint_to_ignore * 3, joint_to_ignore * 3 + 1, joint_to_ignore * 3 + 2))
     dimensions_to_use = np.setdiff1d(np.arange(complete_seq.shape[1]), dimensions_to_ignore)
 
-    data_std[dimensions_to_ignore] = 1.0
-    data_mean[dimensions_to_ignore] = 0.0
+    # data_std[dimensions_to_ignore] = 1.0
+    # data_mean[dimensions_to_ignore] = 0.0
 
     return sampled_seq, dimensions_to_ignore, dimensions_to_use, data_mean, data_std
 
