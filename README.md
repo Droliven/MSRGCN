@@ -26,20 +26,24 @@ Human3.6M
 
 CMU Mocap dataset
 
-+ A pose in h3.6m has 38 joints, from which we choose 25, and build the multi-scale by 25 -> 12 -> 7 -> 4 dividing manner.
-+ CMU does not have valid dataset
++ A pose in cmu has 38 joints, from which we choose 25, and build the multi-scale by 25 -> 12 -> 7 -> 4 dividing manner.
++ CMU does not have valid dataset, testing is done on the 8 actions separately, on each we use all data instead of the random selected 8 samples.
 + Some joints of the origin 38 have the same position
-+ testing is done on the 15 actions separately, on each we use all data instead of the random selected 8 samples.
++ The input / output length is 10 / 25
 
 ## train
 
-+ train on Human3.6M: `python main.py --expname=h36m --is_train=1 --output_n=25 --dct_n=35`
-+ train on CMU Mocap: `python main.py --expname=cmu --is_train=1 --output_n=25 --dct_n=35`
++ train on Human3.6M: 
+  `python main.py --expname=h36m --is_train=1 --output_n=25 --dct_n=35`
++ train on CMU Mocap: 
+  `python main.py --expname=cmu --is_train=1 --output_n=25 --dct_n=35`
 
 ## evaluate and visualize results
 
-+ evaluate on Human3.6M: `python main.py --expname=h36m --is_load=1 --model_path=ckpt/pretrained/ --output_n=25 --dct_n=35 --test_manner=all`
-+ evaluate on CMU Mocap: `python main.py --expname=cmu --is_load=1 --model_path=ckpt/pretrained/ --output_n=25 --dct_n=35 --test_manner=all`
++ evaluate on Human3.6M: 
+  `python main.py --expname=h36m --is_load=1 --model_path=ckpt/pretrained/ --output_n=25 --dct_n=35 --test_manner=all`
++ evaluate on CMU Mocap: 
+  `python main.py --expname=cmu --is_load=1 --model_path=ckpt/pretrained/ --output_n=25 --dct_n=35 --test_manner=all`
 
 ## Results
 
