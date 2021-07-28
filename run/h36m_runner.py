@@ -10,7 +10,7 @@
 '''
 
 from datas import H36MMotionDataset, get_dct_matrix, reverse_dct_torch, define_actions,draw_pic_gt_pred
-from nets import MSRGCN
+from nets import MSRGCN, MSRGCNShortTerm
 from configs.config import Config
 
 from torch.utils.data import DataLoader
@@ -68,7 +68,11 @@ class H36MRunner():
         with open(os.path.join(self.cfg.ckpt_dir, "config.txt"), 'w', encoding='utf-8') as f:
             f.write(str(self.cfg.__dict__))
         # 模型
-        self.model = MSRGCN(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+        if self.cfg.output_n == 25:
+            self.model = MSRGCN(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+        elif self.cfg.output_n == 10:
+            self.model = MSRGCNShortTerm(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+
         if self.cfg.device != "cpu":
             self.model.cuda(self.cfg.device)
 

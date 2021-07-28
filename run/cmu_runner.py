@@ -11,7 +11,7 @@
 
 
 from datas import CMUMotionDataset, get_dct_matrix, reverse_dct_torch, define_actions_cmu, draw_pic_gt_pred
-from nets import MSRGCN
+from nets import MSRGCN, MSRGCNShortTerm
 from configs.config import Config
 
 from torch.utils.data import DataLoader
@@ -69,7 +69,11 @@ class CMURunner():
         with open(os.path.join(self.cfg.ckpt_dir, "config.txt"), 'w', encoding='utf-8') as f:
             f.write(str(self.cfg.__dict__))
         # 模型
-        self.model = MSRGCN(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+        if self.cfg.output_n == 25:
+            self.model = MSRGCN(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+        elif self.cfg.output_n == 10:
+            self.model = MSRGCNShortTerm(self.cfg.p_dropout, self.cfg.leaky_c, self.cfg.final_out_noden, input_feature=self.cfg.dct_n)
+
         if self.cfg.device != "cpu":
             self.model.cuda(self.cfg.device)
 
@@ -136,14 +140,14 @@ class CMURunner():
 
     def restore(self, checkpoint_path):
         state = torch.load(checkpoint_path, map_location=self.cfg.device)
-        self.model.load_state_dict(state["generator"])
-        # self.optimizer.load_state_dict(state["optimizer"])
-        # self.lr = state["lr"]
+        self.model.load_state_dict(state["model"])
+        self.optimizer.load_state_dict(state["optimizer"])
+        self.lr = state["lr"]
         self.start_epoch = state["epoch"] + 1
-        # best_err = state['best_err']
-        # curr_err = state["curr_err"]
-        # print(
-        #     "load from epoch {}, lr {}, curr_avg {}, best_avg {}.".format(state["epoch"], self.lr, curr_err, best_err))
+        best_err = state['best_err']
+        curr_err = state["curr_err"]
+        print(
+            "load from epoch {}, lr {}, curr_avg {}, best_avg {}.".format(state["epoch"], self.lr, curr_err, best_err))
 
     def train(self, epoch):
         self.model.train()

@@ -64,7 +64,7 @@ parser.add_argument('--is_load', type=bool, default='', help="")
 
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch927_err37.7421.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err38.3698.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch58_err37.2310.pth"), help="")
+parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch58_err37.2310.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch85_err37.3489.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err37.3580.pth"), help="")
 
@@ -95,7 +95,10 @@ else:
 
     col = r.cfg.frame_ids
     d = pd.DataFrame(errs, index=acts, columns=col)
-    d.to_csv(f"{r.cfg.exp_name}_{r.cfg.test_manner}.csv", line_terminator="\n")
+    d.to_csv(f"{r.cfg.exp_name}_in{r.cfg.input_n}out{r.cfg.output_n}dctn{r.cfg.dct_n}_{r.cfg.test_manner}.csv", line_terminator="\n")
 
-    r.save(os.path.join(r.cfg.ckpt_dir, "models", '{}_in{}out{}dctn{}_best_epoch{}_err{:.4f}.pth'.format(r.cfg.exp_name, r.cfg.input_n, r.cfg.output_n, r.cfg.dct_n, r.start_epoch, np.mean(errs))),
-           927, np.mean(errs), np.mean(errs))
+    # r.save(os.path.join(r.cfg.ckpt_dir, "models", '{}_in{}out{}dctn{}_best_epoch{}_err{:.4f}.pth'.format(r.cfg.exp_name, r.cfg.input_n, r.cfg.output_n, r.cfg.dct_n, r.start_epoch, np.mean(errs))),
+    #        r.start_epoch, np.mean(errs), np.mean(errs))
+
+
+

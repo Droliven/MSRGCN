@@ -10,3 +10,4 @@
 '''
 
 from .msrgcn import MSRGCN
+from .msrgcn_short_term import MSRGCNShortTerm
