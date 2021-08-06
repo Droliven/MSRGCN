@@ -1,6 +1,6 @@
 # MSR-GCN
 
-Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](www.baidu.com) (ICCV 2021 paper)
+Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://github.com/Droliven/MSRGCN) (ICCV 2021 paper)
 
 ## Authors
 
