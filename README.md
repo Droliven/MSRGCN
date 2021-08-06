@@ -155,7 +155,7 @@ Average | 8.81 | 15.90 | 30.43 | 37.89 | 51.69 | 78.67 | 37.23
 
 [comment]: <> (Average | 8.98 | 15.71 | 32.73 | 41.82 | 24.81 )
 
-## Citing
+## Citation
 
 If you use our code, please cite our work
 
