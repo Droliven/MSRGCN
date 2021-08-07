@@ -1,6 +1,6 @@
 # MSR-GCN
 
-Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://github.com/Droliven/MSRGCN) (ICCV 2021 paper)
+Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](assets/07627.pdf) (ICCV 2021 paper)
 
 ## Authors
 
@@ -8,12 +8,12 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 2. [Yongwei Nie](https://nieyongwei.net), School of Computer Science and Engineering, South China University of Technology, China, [nieyongwei@scut.edu.cn](mailto:nieyongwei@scut.edu.cn)
 3. [Chengjiang Long](http://www.chengjianglong.com), JD Finance America Corporation, USA, [cjfykx@gmail.com](mailto:cjfykx@gmail.com)
 4. [Qing Zhang](http://zhangqing-home.net/), School of Computer Science and Engineering, Sun Yat-sen University, China, [zhangqing.whu.cs@gmail.com](mailto:zhangqing.whu.cs@gmail.com)
-5. Guiqing Li, School of Computer Science and Engineering, South China University of Technology, China, [ligq@scut.edu.cn](mailto:ligq@scut.edu.cn)
+5. [Guiqing Li](http://www2.scut.edu.cn/cs/2017/0629/c22284a328097/page.htm), School of Computer Science and Engineering, South China University of Technology, China, [ligq@scut.edu.cn](mailto:ligq@scut.edu.cn)
 
 ## Abstract
 ######  &nbsp;&nbsp;&nbsp;  Human motion prediction is a challenging task due to the stochasticity and aperiodicity of future poses. Recently, graph convolutional network (GCN) has been proven to be very effective to learn dynamic relations among pose joints, which is helpful for pose prediction. On the other hand, one can abstract a human pose recursively to obtain a set of poses at multiple scales. With the increase of the abstraction level, the motion of the pose becomes more stable, which benefits pose prediction too. In this paper, we propose a novel multi-scale residual Graph Convolution Network (MSR-GCN) for human pose prediction task in the manner of end-to-end. The GCNs are used to extract features from fine to coarse scale and then from coarse to fine scale. The extracted features at each scale are then combined and decoded to obtain the residuals between the input and target poses. Intermediate supervisions are imposed on all the predicted poses, which enforces the network to learn more representative features. Our proposed approach is evaluated on two standard benchmark datasets, i.e., the Human3.6M dataset and the CMU Mocap dataset. Experimental results demonstrate that our method outperforms the state-of-the-art approaches.
 
-![MSR-GCN](figs/overview.png)
+![MSR-GCN](assets/overview.png)
 
 ###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Figure: The architecture of the proposed MSR-GCN which consists of one start GCN, four descending GCNs (`D0,D1,D2,D3`), four ascending GCNs (`A0,A1,A2,A3`), and four end GCNs (`E0,E1,E2,E3`). The start GCN only takes the black poses at scale 0 as input. Then descending and ascending GCNs are stacked sequentially to extract features for each scale twice. The combined features at each scale are finally fed into the corresponding end GCN for decoding. Residual connections are added after every end GCN to add the ground truth poses to the output of each GCN, making the network learn residuals rather than the target poses directly.
 
