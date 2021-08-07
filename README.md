@@ -2,6 +2,8 @@
 
 Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](assets/07627.pdf) (ICCV 2021 paper)
 
+[\[PDF\]](assets/07627.pdf)  [\[Supp\]](assets/07627_supp.pdf)
+
 ## Authors
 
 1. [Lingwei Dang](https://github.com/Droliven), School of Computer Science and Engineering, South China University of Technology, China, [droliven@gmail.com](mailto:droliven@gmail.com)
