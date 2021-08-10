@@ -165,7 +165,7 @@ If you use our code, please cite our work
 @inproceedings{lingwei2021msrgcn,
   title={MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction},
   author={Lingwei, Dang and Yongwei, Nie and Chengjiang, Long and Qing, Zhang and Guiqing Li},
-  booktitle={ICCV},
+  booktitle={Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
   year={2021}
 }
 ```
