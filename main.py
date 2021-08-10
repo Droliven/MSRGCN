@@ -45,13 +45,13 @@ from run import H36MRunner, CMURunner
 from datas import define_actions, define_actions_cmu
 
 parser = argparse.ArgumentParser(description='manual to this script')
-parser.add_argument('--exp_name', type=str, default="h36m", help="")
+parser.add_argument('--exp_name', type=str, default="cmu", help="h36m / cmu")
 parser.add_argument('--input_n', type=int, default=10, help="")
 parser.add_argument('--output_n', type=int, default=25, help="")
 parser.add_argument('--dct_n', type=int, default=35, help="")
 parser.add_argument('--device', type=str, default="cuda:0", help="")
 parser.add_argument('--num_works', type=int, default=0)
-parser.add_argument('--test_manner', type=str, default="all", help="")
+parser.add_argument('--test_manner', type=str, default="all", help="all / 8")
 parser.add_argument('--debug_step', type=int, default=1, help="")
 parser.add_argument('--is_train', type=bool, default='', help="")
 parser.add_argument('--is_load', type=bool, default='', help="")
@@ -62,9 +62,9 @@ parser.add_argument('--is_load', type=bool, default='', help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch19_err58.2664.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch39_err59.0848.pth"), help="")
 
+parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch58_err37.2310.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch927_err37.7421.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err38.3698.pth"), help="")
-parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch58_err37.2310.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch85_err37.3489.pth"), help="")
 # parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err37.3580.pth"), help="")
 
