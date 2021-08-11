@@ -46,13 +46,6 @@ CMU Mocap dataset
 + Some joints of the origin 38 have the same position
 + The input / output length is 10 / 25
 
-## train
-
-+ train on Human3.6M: 
-  `python main.py --expname=h36m --is_train=1 --output_n=25 --dct_n=35`
-+ train on CMU Mocap: 
-  `python main.py --expname=cmu --is_train=1 --output_n=25 --dct_n=35`
-
 ## evaluate and visualize results
 
 + evaluate on Human3.6M: 
@@ -156,6 +149,13 @@ Average | 8.81 | 15.90 | 30.43 | 37.89 | 51.69 | 78.67 | 37.23
 [comment]: <> (washwindow | 5.01 | 10.35 | 28.38 | 37.69 | )
 
 [comment]: <> (Average | 8.98 | 15.71 | 32.73 | 41.82 | 24.81 )
+
+## train
+
++ train on Human3.6M: 
+  `python main.py --expname=h36m --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
++ train on CMU Mocap: 
+  `python main.py --expname=cmu --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
 
 ## Citation
 
