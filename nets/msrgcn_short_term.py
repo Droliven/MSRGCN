@@ -18,8 +18,7 @@ class MSRGCNShortTerm(nn.Module):
     def __init__(self, p_dropout, leaky_c=0.2, final_out_noden=22, input_feature=35):
         super(MSRGCNShortTerm, self).__init__()
         # 左半部分
-        self.first_enhance = PreGCN(input_feature=input_feature, hidden_feature=256, node_n=final_out_noden * 3,
-                                    p_dropout=p_dropout, leaky_c=leaky_c)  # 35, 64, 66, 0.5
+        self.first_enhance = PreGCN(input_feature=input_feature, hidden_feature=256, node_n=final_out_noden * 3, p_dropout=p_dropout, leaky_c=leaky_c)  # 35, 64, 66, 0.5
         self.first_left = nn.Sequential(
             GC_Block(in_features=256, p_dropout=p_dropout, node_n=final_out_noden * 3, leaky_c=leaky_c),  # 64, 0.5, 66
             GC_Block(in_features=256, p_dropout=p_dropout, node_n=final_out_noden * 3, leaky_c=leaky_c),

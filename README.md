@@ -17,7 +17,7 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 
 ![MSR-GCN](assets/overview.png)
 
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Figure: The architecture of the proposed MSR-GCN which consists of one start GCN, four descending GCNs (`D0,D1,D2,D3`), four ascending GCNs (`A0,A1,A2,A3`), and four end GCNs (`E0,E1,E2,E3`). The start GCN only takes the black poses at scale 0 as input. Then descending and ascending GCNs are stacked sequentially to extract features for each scale twice. The combined features at each scale are finally fed into the corresponding end GCN for decoding. Residual connections are added after every end GCN to add the ground truth poses to the output of each GCN, making the network learn residuals rather than the target poses directly.
+###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Figure: The architecture of the proposed MSR-GCN comprising one start GCN, four descending GCNs (`D0,D1,D2,D3`), four ascending GCNs (`A0,A1,A2,A3`), and four end GCNs (`E0,E1,E2,E3`). The start GCN takes the black poses at scale 0 as input. Then descending and ascending GCNs are stacked sequentially to extract features for each scale twice. The combined features at each scale are finally fed into the corresponding end GCN for decoding. Residual connections are added after every end GCN that add the ground truth poses to the output of each GCN, making the network learn residuals rather than the target poses directly.
 
 ## Dependencies
 

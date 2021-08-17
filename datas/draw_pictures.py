@@ -41,7 +41,7 @@ def draw_pic_single(mydata, I, J, LR, full_path):
     ax.set_ylim3d([-1000, 1000])
     ax.set_zlim3d([-1000, 1000])
 
-    ax.scatter(x, y, z, c='r')
+    ax.scatter(x, y, z, c='b')
 
     # (250, 40, 40) #FA2828 红
     # (245, 125, 125) #F57D7D 粉
@@ -51,7 +51,7 @@ def draw_pic_single(mydata, I, J, LR, full_path):
     # Make connection matrix
     for i in np.arange(len(I)):
         x, y, z = [np.array([mydata[I[i], j], mydata[J[i], j]]) for j in range(3)]
-        ax.plot(x, y, z, lw=2, c='g' if LR[i] else 'b')
+        ax.plot(x, y, z, lw=2, c='#B4B4B4' if LR[i] else '#B4B4B4')
 
     plt.savefig(full_path)
     plt.close()
