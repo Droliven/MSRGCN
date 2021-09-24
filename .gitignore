@@ -2,3 +2,4 @@
 ckpt/*
 !ckpt/pretrained/
 __pycache__/
+test*.*
