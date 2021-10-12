@@ -1,10 +1,47 @@
 # MSR-GCN
 
-Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](assets/07627.pdf) (ICCV 2021 paper)
+Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html) (ICCV 2021 paper)
 
-[\[PDF\]](assets/07627.pdf)  [\[Supp\]](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf)  [\[Poster\]](https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf)  [\[Presentation\]]()
+[\[Paper\]]("https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf")
+[\[Supp\]]("https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf")
+[\[Poster\]]("./assets/7627-poster.pdf")
+[\[Slides\]]("./assets/7627-slides.pdf")
+
 
 ## Authors
+
+  <div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;align-items:center;">
+    <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
+        <a href="https://github.com/Droliven" style="text-align: center;"><img src="./assets/lingweidang.png" width="40%"></a>
+        <p>
+          <a href="https://github.com/Droliven">[Lingwei Dang]</a>
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
+        <a href="https://nieyongwei.net" style="text-align: center;"><img src="./assets/yongweinie.png" width="40%"></a>
+        <p>
+          <a href="https://nieyongwei.net">[Yongwei Nie]</a>
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
+        <a href="http://www.chengjianglong.com" style="text-align: center;"><img src="./assets/chengjianglong.png" width="60%"></a>
+        <p>
+          <a href="http://www.chengjianglong.com">[Chengjiang Long]</a>
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
+        <a href="http://zhangqing-home.net/" style="text-align: center;"><img src="./assets/qingzhang.png" width="40%"></a>
+        <p>
+          <a href="http://zhangqing-home.net/">[Qing Zhang]</a>
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
+        <a href="http://www2.scut.edu.cn/cs/2017/0629/c22284a328097/page.htm" style="text-align: center;"><img src="./assets/guiqingli.png" width="40%"></a>
+        <p>
+          <a href="http://www2.scut.edu.cn/cs/2017/0629/c22284a328097/page.htm">[Guiqing Li]</a>
+        </p>
+      </div>
+  </div>
 
 1. [Lingwei Dang](https://github.com/Droliven), School of Computer Science and Engineering, South China University of Technology, China, [droliven@gmail.com](mailto:droliven@gmail.com)
 2. [Yongwei Nie](https://nieyongwei.net), School of Computer Science and Engineering, South China University of Technology, China, [nieyongwei@scut.edu.cn](mailto:nieyongwei@scut.edu.cn)
@@ -12,12 +49,17 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 4. [Qing Zhang](http://zhangqing-home.net/), School of Computer Science and Engineering, Sun Yat-sen University, China, [zhangqing.whu.cs@gmail.com](mailto:zhangqing.whu.cs@gmail.com)
 5. [Guiqing Li](http://www2.scut.edu.cn/cs/2017/0629/c22284a328097/page.htm), School of Computer Science and Engineering, South China University of Technology, China, [ligq@scut.edu.cn](mailto:ligq@scut.edu.cn)
 
-## Abstract
-######  &nbsp;&nbsp;&nbsp;  Human motion prediction is a challenging task due to the stochasticity and aperiodicity of future poses. Recently, graph convolutional network (GCN) has been proven to be very effective to learn dynamic relations among pose joints, which is helpful for pose prediction. On the other hand, one can abstract a human pose recursively to obtain a set of poses at multiple scales. With the increase of the abstraction level, the motion of the pose becomes more stable, which benefits pose prediction too. In this paper, we propose a novel multi-scale residual Graph Convolution Network (MSR-GCN) for human pose prediction task in the manner of end-to-end. The GCNs are used to extract features from fine to coarse scale and then from coarse to fine scale. The extracted features at each scale are then combined and decoded to obtain the residuals between the input and target poses. Intermediate supervisions are imposed on all the predicted poses, which enforces the network to learn more representative features. Our proposed approach is evaluated on two standard benchmark datasets, i.e., the Human3.6M dataset and the CMU Mocap dataset. Experimental results demonstrate that our method outperforms the state-of-the-art approaches.
 
-![MSR-GCN](assets/overview.png)
+## Overview
 
-###### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Figure: The architecture of the proposed MSR-GCN comprising one start GCN, four descending GCNs (`D0,D1,D2,D3`), four ascending GCNs (`A0,A1,A2,A3`), and four end GCNs (`E0,E1,E2,E3`). The start GCN takes the black poses at scale 0 as input. Then descending and ascending GCNs are stacked sequentially to extract features for each scale twice. The combined features at each scale are finally fed into the corresponding end GCN for decoding. Residual connections are added after every end GCN that add the ground truth poses to the output of each GCN, making the network learn residuals rather than the target poses directly.
+
+<a href="./assets/7627-poster.pdf">
+  <img src="./assets/7627-poster.png" />
+</a>
+
+
+  &nbsp;&nbsp;&nbsp;  Human motion prediction is a challenging task due to the stochasticity and aperiodicity of future poses. Recently, graph convolutional network (GCN) has been proven to be very effective to learn dynamic relations among pose joints, which is helpful for pose prediction. On the other hand, one can abstract a human pose recursively to obtain a set of poses at multiple scales. With the increase of the abstraction level, the motion of the pose becomes more stable, which benefits pose prediction too. In this paper, we propose a novel multi-scale residual Graph Convolution Network (MSR-GCN) for human pose prediction task in the manner of end-to-end. The GCNs are used to extract features from fine to coarse scale and then from coarse to fine scale. The extracted features at each scale are then combined and decoded to obtain the residuals between the input and target poses. Intermediate supervisions are imposed on all the predicted poses, which enforces the network to learn more representative features. Our proposed approach is evaluated on two standard benchmark datasets, i.e., the Human3.6M dataset and the CMU Mocap dataset. Experimental results demonstrate that our method outperforms the state-of-the-art approaches.
+
 
 ## Dependencies
 
@@ -164,11 +206,13 @@ Average | 8.81 | 15.90 | 30.43 | 37.89 | 51.69 | 78.67 | 37.23
 If you use our code, please cite our work
 
 ```
-@inproceedings{lingwei2021msrgcn,
-  title={MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction},
-  author={Lingwei, Dang and Yongwei, Nie and Chengjiang, Long and Qing, Zhang and Guiqing Li},
-  booktitle={Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
-  year={2021}
+@InProceedings{Dang_2021_ICCV,
+    author    = {Dang, Lingwei and Nie, Yongwei and Long, Chengjiang and Zhang, Qing and Li, Guiqing},
+    title     = {MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2021},
+    pages     = {11467-11476}
 }
 ```
 
