@@ -2,15 +2,15 @@
 
 Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html) (ICCV 2021 paper)
 
-[\[Paper\]]("https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf")
-[\[Supp\]]("https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf")
-[\[Poster\]]("./assets/7627-poster.pdf")
-[\[Slides\]]("./assets/7627-slides.pdf")
+[\[Paper\]](https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf)
+[\[Supp\]](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf)
+[\[Poster\]](./assets/7627-poster.pdf)
+[\[Slides\]](./assets/7627-slides.pdf)
 
 
 ## Authors
 
-  <div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;align-items:center;">
+<!--   <div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;align-items:center;">
     <div style="display:flex;flex-direction:column;flex-wrap:wrap;justify-content:center;align-items:center;">
         <a href="https://github.com/Droliven" style="text-align: center;"><img src="./assets/lingweidang.png" width="40%"></a>
         <p>
@@ -42,7 +42,7 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
         </p>
       </div>
   </div>
-
+ -->
 1. [Lingwei Dang](https://github.com/Droliven), School of Computer Science and Engineering, South China University of Technology, China, [droliven@gmail.com](mailto:droliven@gmail.com)
 2. [Yongwei Nie](https://nieyongwei.net), School of Computer Science and Engineering, South China University of Technology, China, [nieyongwei@scut.edu.cn](mailto:nieyongwei@scut.edu.cn)
 3. [Chengjiang Long](http://www.chengjianglong.com), JD Finance America Corporation, USA, [cjfykx@gmail.com](mailto:cjfykx@gmail.com)
