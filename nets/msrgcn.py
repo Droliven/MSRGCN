@@ -210,7 +210,7 @@ class MSRGCN(nn.Module):
         fusion_third = self.third_extra(third_right) + third_right  # 两重残差连接
         pred_third = self.third_out(fusion_third) + x_p7  # 大残差连接
 
-        fusion_fourth = self.fourth_extra(bottom) + bottom  # 残差连接
+        fusion_fourth = self.fourth_extra(bottom_right) + bottom_right  # 残差连接
         pred_fourth = self.fourth_out(fusion_fourth) + x_p4  # 大残差连接
 
         return {
