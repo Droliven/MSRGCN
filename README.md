@@ -92,10 +92,10 @@ CMU Mocap dataset
 
 + evaluate on Human3.6M: 
   
-  `python main.py --expname=h36m --is_load=1 --model_path=ckpt/pretrained/h36m_in10out25dctn35_best_epoch82_err57.9256.pth --output_n=25 --dct_n=35 --test_manner=all`
+  `python main.py --exp_name=h36m --is_load=1 --model_path=ckpt/pretrained/h36m_in10out25dctn35_best_epoch82_err57.9256.pth --output_n=25 --dct_n=35 --test_manner=all`
 + evaluate on CMU Mocap: 
   
-  `python main.py --expname=cmu --is_load=1 --model_path=ckpt/pretrained/cmu_in10out25dctn35_best_epoch58_err37.2310.pth --output_n=25 --dct_n=35 --test_manner=all`
+  `python main.py --exp_name=cmu --is_load=1 --model_path=ckpt/pretrained/cmu_in10out25dctn35_best_epoch58_err37.2310.pth --output_n=25 --dct_n=35 --test_manner=all`
 
 ## Results
 
