@@ -127,9 +127,8 @@ class CMURunner():
 
         self.summary = SummaryWriter(self.cfg.ckpt_dir)
 
-    def save(self, checkpoint_path, epoch, best_err, curr_err):
+    def save(self, checkpoint_path, best_err, curr_err):
         state = {
-            "epoch": epoch,
             "lr": self.lr,
             "best_err": best_err,
             "curr_err": curr_err,
@@ -143,14 +142,14 @@ class CMURunner():
         self.model.load_state_dict(state["model"])
         self.optimizer.load_state_dict(state["optimizer"])
         self.lr = state["lr"]
-        self.start_epoch = state["epoch"] + 1
         best_err = state['best_err']
         curr_err = state["curr_err"]
-        print(
-            "load from epoch {}, lr {}, curr_avg {}, best_avg {}.".format(state["epoch"], self.lr, curr_err, best_err))
+        print("load from lr {}, curr_avg {}, best_avg {}.".format(state["lr"], curr_err, best_err))
+
 
     def train(self, epoch):
         self.model.train()
+        average_loss = 0
 
         for i, (inputs, gts) in tqdm(enumerate(self.train_loader), total=len(self.train_loader)):
             b, cv, t_len = inputs[list(inputs.keys())[0]].shape
@@ -186,7 +185,10 @@ class CMURunner():
             self.optimizer.zero_grad()
             losses.backward()
             self.optimizer.step()
+            average_loss += losses.cpu().data.numpy()
 
+        average_loss /= (i + 1)
+        return average_loss
 
     def test(self, epoch=0):
         self.model.eval()
@@ -248,23 +250,25 @@ class CMURunner():
                 self.lr = lr_decay(self.optimizer, self.lr, self.cfg.lr_decay)
             self.summary.add_scalar("LR", self.lr, epoch)
 
-            self.train(epoch)
+            average_train_loss = self.train(epoch)
+            if average_train_loss < self.best_accuracy:
+                self.best_accuracy = average_train_loss
+                self.save(
+                    os.path.join(self.cfg.ckpt_dir, "models",
+                                 '{}_in{}out{}dctn{}_best_epoch{}_err{:.4f}.pth'.format(self.cfg.exp_name,
+                                                                                        self.cfg.input_n,
+                                                                                        self.cfg.output_n,
+                                                                                        self.cfg.dct_n, epoch,
+                                                                                        average_train_loss)), self.best_accuracy, average_train_loss)
 
+            self.save(os.path.join(self.cfg.ckpt_dir, "models",
+                                   '{}_in{}out{}dctn{}_last.pth'.format(self.cfg.exp_name, self.cfg.input_n,
+                                                                        self.cfg.output_n, self.cfg.dct_n)),
+                      self.best_accuracy, average_train_loss)
             if epoch % 1 == 0:
                 loss_l2_test = self.test(epoch)
 
-                if np.mean(loss_l2_test) < self.best_accuracy:
-                    self.best_accuracy = np.mean(loss_l2_test)
-                    self.save(
-                        os.path.join(self.cfg.ckpt_dir, "models", '{}_in{}out{}dctn{}_best_epoch{}_err{:.4f}.pth'.format(self.cfg.exp_name, self.cfg.input_n, self.cfg.output_n, self.cfg.dct_n, epoch, np.mean(loss_l2_test))),
-                        epoch, self.best_accuracy, np.mean(loss_l2_test))
-
-                self.save(os.path.join(self.cfg.ckpt_dir, "models", '{}_in{}out{}dctn{}_last.pth'.format(self.cfg.exp_name, self.cfg.input_n, self.cfg.output_n, self.cfg.dct_n)),
-                          epoch, self.best_accuracy, np.mean(loss_l2_test))
-
-                print('Epoch: {},  LR: {}, Current err test avg: {}, The best: {}'.format(epoch, self.lr,
-                                                                                          np.mean(loss_l2_test),
-                                                                                          self.best_accuracy))
+                print('Epoch: {},  LR: {}, Current err test avg: {}'.format(epoch, self.lr, np.mean(loss_l2_test)))
 
 
 if __name__ == '__main__':
