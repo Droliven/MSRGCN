@@ -56,9 +56,9 @@ parser.add_argument('--debug_step', type=int, default=1, help="")
 parser.add_argument('--is_train', type=bool, default='', help="")
 parser.add_argument('--is_load', type=bool, default='', help="")
 
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out10dctn15_best_epoch31_err36.3625.pth"), help="")
+# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out10dctn15_best_err36.3625.pth"), help="")
 
-parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out10dctn15_best_epoch141_err24.8084.pth"), help="")
+parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out10dctn15_best_err24.8084.pth"), help="")
 
 args = parser.parse_args()
 

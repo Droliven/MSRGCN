@@ -88,14 +88,26 @@ CMU Mocap dataset
 + Some joints of the origin 38 have the same position
 + The input / output length is 10 / 25
 
+## Train
+
++ train on Human3.6M:
+
+  `python main.py --exp_name=h36m --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
+
++ train on CMU Mocap:
+
+  `python main.py --exp_name=cmu --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
+
+
 ## Evaluate and visualize results
 
-+ evaluate on Human3.6M: 
-  
-  `python main.py --exp_name=h36m --is_load=1 --model_path=ckpt/pretrained/h36m_in10out25dctn35_best_epoch82_err57.9256.pth --output_n=25 --dct_n=35 --test_manner=all`
++ evaluate on Human3.6M:
+
+  `python main.py --exp_name=h36m --is_load=1 --model_path=ckpt/pretrained/h36m_in10out25dctn35_best_err57.9256.pth --output_n=25 --dct_n=35 --test_manner=all`
+
 + evaluate on CMU Mocap: 
   
-  `python main.py --exp_name=cmu --is_load=1 --model_path=ckpt/pretrained/cmu_in10out25dctn35_best_epoch58_err37.2310.pth --output_n=25 --dct_n=35 --test_manner=all`
+  `python main.py --exp_name=cmu --is_load=1 --model_path=ckpt/pretrained/cmu_in10out25dctn35_best_err37.2310.pth --output_n=25 --dct_n=35 --test_manner=all`
 
 ## Results
 
