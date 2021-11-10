@@ -55,18 +55,7 @@ parser.add_argument('--test_manner', type=str, default="all", help="all / 8")
 parser.add_argument('--debug_step', type=int, default=1, help="")
 parser.add_argument('--is_train', type=bool, default='', help="")
 parser.add_argument('--is_load', type=bool, default='', help="")
-
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch82_err57.9256.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch22_err58.3146.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch35_err58.2398.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch19_err58.2664.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "h36m_in10out25dctn35_best_epoch39_err59.0848.pth"), help="")
-
-parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch58_err37.2310.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch927_err37.7421.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err38.3698.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch85_err37.3489.pth"), help="")
-# parser.add_argument('--model_path', type=str, default=os.path.join(r"E:\PythonWorkspace\MSRGCN\ckpt\pretrained", "cmu_in10out25dctn35_best_epoch142_err37.3580.pth"), help="")
+parser.add_argument('--model_path', type=str, default="", help="")
 
 args = parser.parse_args()
 
