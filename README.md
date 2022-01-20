@@ -206,13 +206,7 @@ Average | 8.81 | 15.90 | 30.43 | 37.89 | 51.69 | 78.67 | 37.23
 
 [comment]: <> (Average | 8.98 | 15.71 | 32.73 | 41.82 | 24.81 )
 
-## Train
-
-+ train on Human3.6M: 
-  `python main.py --expname=h36m --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
-+ train on CMU Mocap: 
-  `python main.py --expname=cmu --is_train=1 --output_n=25 --dct_n=35 --test_manner=all`
-
+  
 ## Citation
 
 If you use our code, please cite our work
