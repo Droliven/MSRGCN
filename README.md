@@ -6,6 +6,7 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 [\[Supp\]](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf)
 [\[Poster\]](./assets/7627-poster.pdf)
 [\[Slides\]](./assets/7627-slides-v4.5.pptx)
+[\[Video\]](./assets/7627-slides-v4.5.mp4)
 
 
 ## Authors
