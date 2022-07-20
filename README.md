@@ -5,7 +5,7 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 [\[Paper\]](https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf)
 [\[Supp\]](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf)
 [\[Poster\]](./assets/7627-poster.pdf)
-[\[Slides\]](./assets/7627-slides.pdf)
+[\[Slides\]](./assets/7627-slides-v4.5.pptx)
 
 
 ## Authors
