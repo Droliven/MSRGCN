@@ -8,6 +8,8 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 [\[Slides\]](./assets/7627-slides-v4.5.pptx)
 [\[Video\]](./assets/7627-slides-v4.5.mp4)
 
+**Note that for stochastic long-term human motion prediction which aims to producing future sequences with high plausibility and diversity, our new work [Diverse Human Motion Prediction via Gumbel-Softmax Sampling from an Auxiliary Space (ACMMM 2022)](https://github.com/Droliven/diverse_sampling) is available.**
+
 
 ## Authors
 
