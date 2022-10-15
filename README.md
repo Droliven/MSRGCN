@@ -1,6 +1,6 @@
 # MSR-GCN
 
-Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html) (ICCV 2021 paper)
+Official implementation of **[MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html)** (ICCV 2021 paper)
 
 [\[Paper\]](https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf)
 [\[Supp\]](https://openaccess.thecvf.com/content/ICCV2021/supplemental/Dang_MSR-GCN_Multi-Scale_Residual_ICCV_2021_supplemental.pdf)
@@ -8,7 +8,7 @@ Official implementation of [MSR-GCN: Multi-Scale Residual Graph Convolution Netw
 [\[Slides\]](./assets/7627-slides-v4.5.pptx)
 [\[Video\]](./assets/7627-slides-v4.5.mp4)
 
-**2022.09.06: Note that for stochastic long-term human motion prediction which aims to producing future sequences with high plausibility and diversity, our new work [Diverse Human Motion Prediction via Gumbel-Softmax Sampling from an Auxiliary Space (ACMMM 2022)](https://github.com/Droliven/diverse_sampling) is available.**
+2022.09.06: Note that for stochastic long-term human motion prediction which aims to producing future sequences with high plausibility and diversity, our new work [Diverse Human Motion Prediction via Gumbel-Softmax Sampling from an Auxiliary Space (ACMMM 2022)](https://github.com/Droliven/diverse_sampling) is available.
 
 
 ## Authors
