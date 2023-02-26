@@ -775,6 +775,9 @@ def load_data_3d(path_to_dataset, subjects, actions, sample_rate, seq_len, devic
                 elif test_manner == "8":
                     # 随机取 8 个
                     fs_sel1, fs_sel2 = find_indices_srnn(num_frames1, num_frames2, seq_len)
+                elif test_manner == "256":
+                    # 随机取 256 个
+                    fs_sel1, fs_sel2 = find_indices_256(num_frames1, num_frames2, seq_len,input_n=10)
 
                 seq_sel1 = the_sequence1[fs_sel1, :]
                 seq_sel2 = the_sequence2[fs_sel2, :]
@@ -817,6 +820,36 @@ def find_indices_srnn(frame_num1, frame_num2, seq_len, input_n=10):
     idxo1 = None
     idxo2 = None
     for _ in np.arange(0, 4):
+        idx_ran1 = rng.randint(16, T1)
+        idx_ran2 = rng.randint(16, T2)
+        idxs1 = np.arange(idx_ran1 + 50 - input_n, idx_ran1 + 50 - input_n + seq_len)
+        idxs2 = np.arange(idx_ran2 + 50 - input_n, idx_ran2 + 50 - input_n + seq_len)
+        if idxo1 is None:
+            idxo1 = idxs1
+            idxo2 = idxs2
+        else:
+            idxo1 = np.vstack((idxo1, idxs1))
+            idxo2 = np.vstack((idxo2, idxs2))
+    return idxo1, idxo2
+
+def find_indices_256(frame_num1, frame_num2, seq_len, input_n=10):
+    """
+        Adapted from [On human motion prediction using recurrent neural network, CVPR17](https://github.com/una-dinosauria/human-motion-prediction/blob/master/src/seq2seq_model.py#L478)
+        which originaly from
+        In order to find the same action indices as in SRNN.
+        https://github.com/asheshjain399/RNNexp/blob/master/structural_rnn/CRFProblems/H3.6m/processdata.py#L325
+        """
+
+    # Used a fixed dummy seed, following
+    # https://github.com/asheshjain399/RNNexp/blob/srnn/structural_rnn/forecastTrajectories.py#L29
+    SEED = 1234567890
+    rng = np.random.RandomState(SEED)
+
+    T1 = frame_num1 - 150
+    T2 = frame_num2 - 150  # seq_len
+    idxo1 = None
+    idxo2 = None
+    for _ in np.arange(0, 128):
         idx_ran1 = rng.randint(16, T1)
         idx_ran2 = rng.randint(16, T2)
         idxs1 = np.arange(idx_ran1 + 50 - input_n, idx_ran1 + 50 - input_n + seq_len)

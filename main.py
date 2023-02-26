@@ -81,10 +81,11 @@ if args.is_train:
     r.run()
 else:
     errs = r.test()
+    # errs = r.new_test_like_MotionMixerIJCAI22() # 注意要将 test_manner 改为 256，同时用预测结果25帧整体去计算损失并平均，（可能需要将 test_batchsize 改为256）
 
     col = r.cfg.frame_ids
     d = pd.DataFrame(errs, index=acts, columns=col)
-    d.to_csv(f"{r.cfg.exp_name}_in{r.cfg.input_n}out{r.cfg.output_n}dctn{r.cfg.dct_n}_{r.cfg.test_manner}.csv", line_terminator="\n")
+    d.to_csv(f"{r.cfg.exp_name}_in{r.cfg.input_n}out{r.cfg.output_n}dctn{r.cfg.dct_n}_{r.cfg.test_manner}.csv", lineterminator="\n")
 
     # r.save(os.path.join(r.cfg.ckpt_dir, "models", '{}_in{}out{}dctn{}_best_epoch{}_err{:.4f}.pth'.format(r.cfg.exp_name, r.cfg.input_n, r.cfg.output_n, r.cfg.dct_n, r.start_epoch, np.mean(errs))),
     #        r.start_epoch, np.mean(errs), np.mean(errs))

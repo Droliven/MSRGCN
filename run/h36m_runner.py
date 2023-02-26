@@ -36,6 +36,22 @@ def L2NormLoss_test(gt, out, frame_ids):  # (batch size,feature dim, seq len)
         t_3d[k] = torch.mean(torch.norm(gt[:, j, :, :].contiguous().view(-1, 3) - out[:, j, :, :].contiguous().view(-1, 3), 2, 1)).cpu().data.numpy() * batch_size
     return t_3d
 
+def L2NormLoss_test_like_MotionMixerIJCAI22(gt, out, frame_ids):  # (batch size,feature dim, seq len)
+    '''
+    gt: B, 96, 25
+    '''
+    t_3d = np.zeros(len(frame_ids))
+
+    batch_size, features, seq_len = gt.shape
+    gt = gt.permute(0, 2, 1).contiguous().view(batch_size, seq_len, -1, 3) # B, 25, 22, 3
+    out = out.permute(0, 2, 1).contiguous().view(batch_size, seq_len, -1, 3) # B, 25, 22, 3
+    for k in np.arange(0, len(frame_ids)):
+        j = frame_ids[k] # [1, 3, 7, 9 (, 13, 24)]
+        gt_cascaded = gt[:, :(j+1), :, :].contiguous().view(-1, 3)
+        pred_cascaded = out[:, :(j+1), :, :].contiguous().view(-1, 3)
+        t_3d[k] = torch.mean(torch.norm(gt_cascaded - pred_cascaded, 2, 1)).cpu().data.numpy() * batch_size
+    return t_3d
+
 def L2NormLoss_train(gt, out):
     '''
     # (batch size,feature dim, seq len)
@@ -233,6 +249,51 @@ class H36MRunner():
                             draw_pic_gt_pred(gt_seq[:, :, t], pred_seq[:, :, t], self.cfg.I22_plot, self.cfg.J22_plot,
                                              self.cfg.LR22_plot,
                                              os.path.join(self.cfg.ckpt_dir, "images", f"{epoch}_{act}_{t}.png"))
+
+            total_loss[act_idx] /= count
+            for fidx, frame in enumerate(frame_ids):
+                self.summary.add_scalar(f"Test/{act}/{frame}", total_loss[act_idx][fidx], epoch)
+
+        self.summary.add_scalar("Test/average", np.mean(total_loss), epoch)
+        for fidx, frame in enumerate(frame_ids):
+            self.summary.add_scalar(f"Test/avg{frame}", np.mean(total_loss[:, fidx]), epoch)
+        return total_loss
+
+    def new_test_like_MotionMixerIJCAI22(self, epoch=0):
+        self.model.eval()
+
+        frame_ids = self.cfg.frame_ids # [1, 3, 7, 9 (, 13, 24)]
+        total_loss = np.zeros((len(define_actions("all")), len(frame_ids)))
+
+        for act_idx, act in enumerate(define_actions("all")):
+            count = 0
+
+            for i, (inputs, gts) in enumerate(self.test_loader[act]):
+                b, cv, t_len = inputs[list(inputs.keys())[0]].shape
+                for k in inputs:
+                    inputs[k] = inputs[k].float().cuda(non_blocking=True, device=self.cfg.device)
+                    gts[k] = gts[k].float().cuda(non_blocking=True, device=self.cfg.device)
+                with torch.no_grad():
+                    outputs = self.model(inputs)
+                    # 反 Norm
+                    for k in outputs:
+                        outputs[k] = (outputs[k] + 1) / 2
+                        outputs[k] = outputs[k] * (self.global_max - self.global_min) + self.global_min
+
+                        # 回转空间
+                        outputs[k] = reverse_dct_torch(outputs[k], self.i_dct_m, self.cfg.seq_len)
+
+                    # 开始计算
+                    mygt = gts['p32'].view(-1, self.cfg.origin_noden, 3, self.cfg.seq_len).clone()
+                    myout = outputs['p22'].view(-1, self.cfg.final_out_noden, 3, self.cfg.seq_len)
+                    mygt[:, self.cfg.dim_used_3d, :, :] = myout
+                    mygt[:, self.cfg.dim_repeat_32, :, :] = myout[:, self.cfg.dim_repeat_22, :, :]
+                    mygt = mygt.view(-1, self.cfg.origin_noden*3, self.cfg.seq_len)
+
+                    loss = L2NormLoss_test_like_MotionMixerIJCAI22(gts['p32'][:, :, self.cfg.input_n:], mygt[:, :, self.cfg.input_n:], self.cfg.frame_ids)
+                    total_loss[act_idx] += loss
+                    # count += 1
+                    count += mygt.shape[0]
 
             total_loss[act_idx] /= count
             for fidx, frame in enumerate(frame_ids):
