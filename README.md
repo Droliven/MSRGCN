@@ -1,6 +1,7 @@
 # MSR-GCN
 
-<!-- [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/msr-gcn-multi-scale-residual-graph/human-pose-forecasting-on-human36m)](https://paperswithcode.com/sota/human-pose-forecasting-on-human36m?p=msr-gcn-multi-scale-residual-graph) -->
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/msr-gcn-multi-scale-residual-graph/human-pose-forecasting-on-human36m)](https://paperswithcode.com/sota/human-pose-forecasting-on-human36m?p=msr-gcn-multi-scale-residual-graph)
+
 
 Official implementation of **[MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html)** (ICCV 2021 paper)
 
@@ -141,24 +142,24 @@ Average | 12.11 | 25.56 | 51.64 | 62.93 | 81.13 | 114.18 | 57.93
 
 Results use the metric like [MotionMixer, IJCAI22](https://github.com/motionmlp/motionmixer)
 
-H3.6M-10/25/35-256 | 80 | 160 | 320 | 400 | 560 | 1000 
-:----: | :----: | :----: | :----: | :----: | :----: | :----: 
-walking	| 9.54 | 15.36 | 24.89 | 28.89 | 35.24 | 44.99
-eating | 5.88 | 9.94 | 17.76 | 21.48 | 28.58 | 44.71
-smoking | 6.39 | 10.66 | 18.78 | 22.58 | 29.43 | 44.23
-discussion | 8.81 | 15.55 | 29.81 | 36.66 | 49.06 | 74.06
-directions | 6.68 | 12.2 | 24.78 | 31.05 | 42.2 | 65.19
+H3.6M-10/25/35-256 | \<=80 | \<=160 | \<=320 | \<=400 | \<=560 | \<=1000 
+:----: |:-----:| :----: | :----: | :----: | :----: | :----: 
+walking	| 9.54  | 15.36 | 24.89 | 28.89 | 35.24 | 44.99
+eating | 5.88  | 9.94 | 17.76 | 21.48 | 28.58 | 44.71
+smoking | 6.39  | 10.66 | 18.78 | 22.58 | 29.43 | 44.23
+discussion | 8.81  | 15.55 | 29.81 | 36.66 | 49.06 | 74.06
+directions | 6.68  | 12.2 | 24.78 | 31.05 | 42.2 | 65.19
 greeting | 11.35 | 19.83 | 37.69 | 46.1 | 60.98 | 89.2
-phoning | 7.56 | 12.69 | 22.91 | 27.92 | 37.57 | 60.16
-posing | 8.77 | 16.11 | 32.94 | 41.69 | 58.66 | 99.05
+phoning | 7.56  | 12.69 | 22.91 | 27.92 | 37.57 | 60.16
+posing | 8.77  | 16.11 | 32.94 | 41.69 | 58.66 | 99.05
 purchases | 10.96 | 19.39 | 36.22 | 43.9 | 57.6 | 85.08
-sitting | 7.96 | 13.47 | 25.34 | 31.2 | 42.38 | 67.88
-sittingdown | 13.2 | 21.52 | 37.02 | 44.3 | 58.25 | 89.99
-takingphoto | 7.18 | 12.45 | 23.81 | 29.5 | 40.95 | 68.61
-waiting | 7.63 | 13.14 | 25.19 | 31.07 | 41.76 | 64.19
+sitting | 7.96  | 13.47 | 25.34 | 31.2 | 42.38 | 67.88
+sittingdown | 13.2  | 21.52 | 37.02 | 44.3 | 58.25 | 89.99
+takingphoto | 7.18  | 12.45 | 23.81 | 29.5 | 40.95 | 68.61
+waiting | 7.63  | 13.14 | 25.19 | 31.07 | 41.76 | 64.19
 walkingdog | 14.97 | 25.66 | 44.8 | 52.61 | 66.25 | 93.61
-walkingtogether | 8.04 | 13.5 | 23.17 | 27.39 | 34.66 | 47.19
-average | 8.99 | 15.43 | 28.34 | 34.42 | 45.57 | 69.21
+walkingtogether | 8.04  | 13.5 | 23.17 | 27.39 | 34.66 | 47.19
+average | 8.99  | 15.43 | 28.34 | 34.42 | 45.57 | 69.21
 
 
 ****
