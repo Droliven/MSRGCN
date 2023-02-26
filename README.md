@@ -1,5 +1,7 @@
 # MSR-GCN
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/msr-gcn-multi-scale-residual-graph/human-pose-forecasting-on-human36m)](https://paperswithcode.com/sota/human-pose-forecasting-on-human36m?p=msr-gcn-multi-scale-residual-graph)
+
 Official implementation of **[MSR-GCN: Multi-Scale Residual Graph Convolution Networks for Human Motion Prediction](https://openaccess.thecvf.com/content/ICCV2021/html/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.html)** (ICCV 2021 paper)
 
 [\[Paper\]](https://openaccess.thecvf.com/content/ICCV2021/papers/Dang_MSR-GCN_Multi-Scale_Residual_Graph_Convolution_Networks_for_Human_Motion_Prediction_ICCV_2021_paper.pdf)
