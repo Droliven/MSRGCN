@@ -19,6 +19,8 @@ import torch
 import os
 
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
 
 def seed_torch(seed=3450):
     # random.seed(seed)
